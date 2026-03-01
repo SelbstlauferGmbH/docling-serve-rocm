@@ -1,0 +1,20 @@
+services:
+  docling-serve: 
+    build:
+      context: .
+      dockerfile: Containerfile
+      args:
+        UV_SYNC_EXTRA_ARGS: "--no-group pypi --group rocm --no-extra flash-attn"
+    env_file: 
+      - .env
+    labels:
+      - traefik.http.routers.api-doclingserve-zijchw-4-websecure.middlewares=octonona-allowlist@file
+    devices:
+      - /dev/kfd:/dev/kfd
+      - /dev/dri:/dev/dri
+    security_opt:
+      - seccomp=unconfined
+    group_add:
+      - video
+      - render
+    restart: always
