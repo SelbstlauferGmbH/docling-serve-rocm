@@ -1,6 +1,8 @@
 services:
   docling-serve:
-    image: ghcr.io/docling-project/docling-serve-cpu
+    build:
+      context: .
+      dockerfile: Dockerfile.cpu
     environment:
       DOCLING_DEVICE: "cpu"
     env_file:

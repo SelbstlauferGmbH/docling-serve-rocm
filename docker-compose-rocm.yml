@@ -2,7 +2,7 @@ services:
   docling-serve: 
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.rocm
       args:
         UV_SYNC_EXTRA_ARGS: --no-group pypi --group rocm --no-extra flash-attn
     env_file:
