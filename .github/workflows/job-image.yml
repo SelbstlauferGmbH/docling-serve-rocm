@@ -112,7 +112,7 @@ jobs:
           platforms: ${{ inputs.platforms }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
-          file: Containerfile
+          file: Dockerfile
           build-args: ${{ inputs.build_args }}
           pull: true
       ##
@@ -132,7 +132,7 @@ jobs:
           platforms: linux/amd64 # when 'load' is true, we can't use a list ${{ inputs.platforms }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
-          file: Containerfile
+          file: Dockerfile
           build-args: ${{ inputs.build_args }}
 
       - name: Test image
@@ -230,7 +230,7 @@ jobs:
           platforms: ${{ inputs.platforms}}
           cache-from: type=gha
           cache-to: type=gha,mode=max
-          file: Containerfile
+          file: Dockerfile
           build-args: ${{ inputs.build_args }}
           pull: true
 

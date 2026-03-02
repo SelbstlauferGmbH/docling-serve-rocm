@@ -6,7 +6,7 @@ services:
   docling-serve:
     build:
       context: ..
-      dockerfile: Containerfile
+      dockerfile: Dockerfile
     platform: "linux/arm64"
     ports:
       - "5001:5001"
@@ -37,7 +37,7 @@ services:
   docling-worker:
     build:
       context: ..
-      dockerfile: Containerfile
+      dockerfile: Dockerfile
     platform: "linux/arm64"
     command: ["docling-serve", "rq-worker"]
     environment:
