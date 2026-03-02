@@ -5,16 +5,17 @@ services:
       dockerfile: Dockerfile
       args:
         UV_SYNC_EXTRA_ARGS: --no-group pypi --group rocm --no-extra flash-attn
+    env_file:
+      - .env
     environment:
-      # Strix Halo (gfx1151) ROCm tuning
+      # ── GPU hardware constants (gfx1151 / Strix Halo) ──
+      # These MUST match the target silicon and override .env if duplicated.
       HSA_OVERRIDE_GFX_VERSION: "11.5.1"
       HSA_ENABLE_SDMA: "0"
       ROCR_VISIBLE_DEVICES: "0"
       # ROCm 7 compiler regression workaround (llvm/llvm-project#147700)
       # Applied via Triton/hipcc at JIT time; safe no-op on non-gfx1151 GPUs
       HIP_HIPCC_FLAGS: "-mllvm --amdgpu-unroll-threshold-local=600"
-    env_file: 
-      - .env
     labels:
       - traefik.http.routers.api-doclingserve-zijchw-4-websecure.middlewares=octonona-allowlist@file
     devices:
