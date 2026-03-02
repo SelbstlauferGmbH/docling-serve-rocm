@@ -1,9 +1,9 @@
-# Extends the official CUDA 12.8 image with the SmolVLM model for picture description.
+# Extends the official CUDA 12.8 image with all extra models (SmolVLM, chart extraction, etc.)
 # Supports Tesla P4 (SM 6.1) and newer.
 FROM ghcr.io/docling-project/docling-serve-cu128
 
 USER 0
-RUN docling-tools models download -o "${DOCLING_SERVE_ARTIFACTS_PATH}" smolvlm && \
+RUN docling-tools models download -o "${DOCLING_SERVE_ARTIFACTS_PATH}" --all && \
     chown -R 1001:0 ${DOCLING_SERVE_ARTIFACTS_PATH} && \
     chmod -R g=u ${DOCLING_SERVE_ARTIFACTS_PATH}
 USER 1001
