@@ -72,7 +72,7 @@ docling-serve-cu130-image: Dockerfile ## Build docling-serve container image wit
 
 .PHONY: docling-serve-rocm-image
 docling-serve-rocm-image: Dockerfile ## Build docling-serve container image with ROCm support
-	$(ECHO_PREFIX) printf "  %-12s Dockerfile\n" "[docling-serve with ROCm 6.3]"
+	$(ECHO_PREFIX) printf "  %-12s Dockerfile\n" "[docling-serve with ROCm 7.1]"
 	$(CMD_PREFIX) $(CONTAINER_RUNTIME) build --load --build-arg "UV_SYNC_EXTRA_ARGS=--no-group pypi --group rocm --no-extra flash-attn" -f Dockerfile --platform linux/amd64 -t ghcr.io/docling-project/docling-serve-rocm:$(TAG) .
 	$(CMD_PREFIX) $(CONTAINER_RUNTIME) tag ghcr.io/docling-project/docling-serve-rocm:$(TAG) ghcr.io/docling-project/docling-serve-rocm:$(BRANCH_TAG)
 	$(CMD_PREFIX) $(CONTAINER_RUNTIME) tag ghcr.io/docling-project/docling-serve-rocm:$(TAG) quay.io/docling-project/docling-serve-rocm:$(BRANCH_TAG)

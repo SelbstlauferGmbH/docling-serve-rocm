@@ -9,9 +9,13 @@ services:
     environment:
       DOCLING_SERVE_ENABLE_UI: "true"
       ROCR_VISIBLE_DEVICES: "0" # https://rocm.docs.amd.com/en/latest/conceptual/gpu-isolation.html#rocr-visible-devices
-      ## This section is for compatibility with older cards
+      ## Strix Halo (gfx1151) — uncomment these lines for Ryzen AI Max "Strix Halo" iGPUs
+      # HSA_OVERRIDE_GFX_VERSION: "11.5.1"  # native gfx1151 identity
+      # HSA_ENABLE_SDMA: "0"                 # disable SDMA for stability
+      ## ROCm 7 compiler regression workaround (llvm/llvm-project#147700)
+      # HIP_HIPCC_FLAGS: "-mllvm --amdgpu-unroll-threshold-local=600"
+      ## Legacy — for older non-Strix-Halo RDNA3 cards (e.g. gfx1100)
       # HSA_OVERRIDE_GFX_VERSION: "11.0.0"
-      # HSA_ENABLE_SDMA: "0"
     devices:
       - /dev/kfd:/dev/kfd
       - /dev/dri:/dev/dri

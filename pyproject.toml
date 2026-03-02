@@ -122,9 +122,9 @@ cu130 = [
   "torchvision>=0.22.1",
 ]
 rocm = [
-  "torch>=2.7.1",
-  "torchvision>=0.22.1",
-  "pytorch-triton-rocm>=3.3.1 ; sys_platform == 'linux' and platform_machine == 'x86_64'",
+  "torch>=2.10.0",
+  "torchvision>=0.25.0",
+  "triton-rocm>=3.6.0 ; sys_platform == 'linux' and platform_machine == 'x86_64'",
 ]
 
 [tool.uv]
@@ -171,6 +171,9 @@ torchvision = [
 pytorch-triton-rocm = [
   { index = "pytorch-rocm", marker = "sys_platform == 'linux'" },
 ]
+triton-rocm = [
+  { index = "pytorch-rocm", marker = "sys_platform == 'linux'" },
+]
 
 # docling-jobkit = { git = "https://github.com/docling-project/docling-jobkit/", rev = "main" }
 # docling-jobkit = { path = "../docling-jobkit", editable = true }
@@ -207,7 +210,7 @@ explicit = true
 
 [[tool.uv.index]]
 name = "pytorch-rocm"
-url = "https://download.pytorch.org/whl/rocm6.3"
+url = "https://download.pytorch.org/whl/rocm7.1"
 explicit = true
 
 [tool.setuptools.packages.find]
