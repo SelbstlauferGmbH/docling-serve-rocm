@@ -25,7 +25,7 @@ services:
     group_add:
       - video
       - render
-    restart: "no"
+    restart: "always"
     shm_size: "32g"
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:5001/health"]

@@ -7,7 +7,7 @@ services:
       - .env
     labels:
       - traefik.http.routers.api-doclingserve-zijchw-4-websecure.middlewares=octonona-allowlist@file
-    restart: "no"
+    restart: "always"
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:5001/health"]
       interval: 60s
