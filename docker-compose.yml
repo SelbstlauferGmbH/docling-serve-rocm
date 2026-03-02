@@ -4,7 +4,7 @@ services:
       context: .
       dockerfile: Containerfile
       args:
-        UV_SYNC_EXTRA_ARGS: "--no-group pypi --group rocm --no-extra flash-attn"
+        UV_SYNC_EXTRA_ARGS: --no-group pypi --group rocm --no-extra flash-attn
     env_file: 
       - .env
     labels:
@@ -18,3 +18,13 @@ services:
       - video
       - render
     restart: always
+    shm_size: '8g'
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5001/health"]
+      interval: 60s
+      timeout: 30s
+      start_period: 180s
+      retries: 5
+networks:
+  dokploy-network:
+    external: true
