@@ -1,12 +1,10 @@
 services:
-  docling-serve: 
-    build:
-      context: .
-      dockerfile: Dockerfile
-    env_file: 
-      - .env
+  docling-serve:
+    image: ghcr.io/docling-project/docling-serve-cpu
     environment:
       DOCLING_DEVICE: "cpu"
+    env_file:
+      - .env
     labels:
       - traefik.http.routers.api-doclingserve-zijchw-4-websecure.middlewares=octonona-allowlist@file
     restart: "always"
