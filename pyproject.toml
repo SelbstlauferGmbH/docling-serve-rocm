@@ -1,6 +1,6 @@
 [project]
 name = "docling-serve"
-version = "1.14.0"  # DO NOT EDIT, updated automatically
+version = "1.18.0"  # DO NOT EDIT, updated automatically
 description = "Running Docling as a service"
 license = {text = "MIT"}
 authors = [
@@ -33,10 +33,10 @@ classifiers = [
 ]
 requires-python = ">=3.10"
 dependencies = [
-    "docling~=2.38",
+    "docling[remote-serving]>=2.88.0,<3.0.0",
     "docling-core>=2.45.0",
-    "docling-jobkit[kfp,rq,vlm]>=1.11.0,<2.0.0",
-    "fastapi[standard]<0.130.0",  # ~=0.115
+    "docling-jobkit[kfp,rq,ray,vlm]>=1.18.0,<2.0.0",
+    "fastapi[standard]<0.137.0",
     "httpx~=0.28",
     "pydantic~=2.10",
     "pydantic-settings~=2.4",
@@ -87,6 +87,7 @@ dev = [
     "python-semantic-release~=7.32",
     "ruff>=0.9.6",
     "types-psutil>=7.2.2.20260130",
+    "types-pyyaml>=6.0.12.20250915",
 ]
 
 pypi = [
@@ -127,6 +128,11 @@ rocm = [
   "pytorch-triton-rocm>=3.3.1 ; sys_platform == 'linux' and platform_machine == 'x86_64'",
 ]
 
+[[tool.uv.dependency-metadata]]
+name = "flash-attn"
+version = "2.8.3"
+requires-dist = ["torch", "einops"]
+
 [tool.uv]
 package = true
 default-groups = ["dev", "pypi"]
@@ -144,7 +150,9 @@ conflicts = [
 environments = ["sys_platform != 'darwin' or platform_machine != 'x86_64'"]
 override-dependencies = [
   "urllib3~=2.0",
-  "xgrammar>=0.1.24"
+  "xgrammar>=0.1.24",
+  "grpcio>=1.75.1",
+  "cryptography>=46.0.7",
 ]
 
 [tool.uv.sources]
@@ -173,6 +181,7 @@ pytorch-triton-rocm = [
 ]
 
 # docling-jobkit = { git = "https://github.com/docling-project/docling-jobkit/", rev = "main" }
+# docling = { git = "https://github.com/docling-project/docling/", rev = "main" }
 # docling-jobkit = { path = "../docling-jobkit", editable = true }
 
 [[tool.uv.index]]
